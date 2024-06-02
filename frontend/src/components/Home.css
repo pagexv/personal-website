@@ -1,0 +1,19 @@
+/* Gradient background */
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e90ff, #87ceeb);
+  color: white;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  position: relative; /* Make home relative to position animation */
+}
+
+.home-content {
+  max-width: 600px;
+  z-index: 1; /* Ensure content is above animation */
+}
+
+

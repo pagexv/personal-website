@@ -1,0 +1,23 @@
+:root {
+  --navbar-background: #333;
+  --navbar-text-color: #fff;
+  --navbar-link-color: #ddd;
+  --navbar-link-hover-color: #fff;
+  --navbar-link-hover-bg: #555;
+}
+
+body.light-mode {
+  --navbar-background: #fff;
+  --navbar-text-color: #333;
+  --navbar-link-color: #555;
+  --navbar-link-hover-color: #333;
+  --navbar-link-hover-bg: #ddd;
+}
+
+body.dark-mode {
+  --navbar-background: #333;
+  --navbar-text-color: #fff;
+  --navbar-link-color: #ddd;
+  --navbar-link-hover-color: #fff;
+  --navbar-link-hover-bg: #555;
+}

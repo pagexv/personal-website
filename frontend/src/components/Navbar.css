@@ -1,0 +1,45 @@
+.navbar {
+    position: fixed; /* Fix the navbar at the top */
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--navbar-background); /* Use CSS variables for dynamic theming */
+    color: var(--navbar-text-color);
+    display: flex;
+    justify-content: space-between; /* Space between brand and links */
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* Ensure navbar is above other elements */
+    font-family: 'Roboto', sans-serif; /* Modern font */
+  }
+  
+  .navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex; /* Display items in a row */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-links li {
+    margin: 0 10px; /* Reduce the spacing between items */
+  }
+  
+  .navbar a {
+    color: var(--navbar-link-color); /* Use CSS variables for dynamic theming */
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px 20px;
+    transition: color 0.3s, background-color 0.3s;
+  }
+  
+  .navbar a:hover {
+    color: var(--navbar-link-hover-color);
+    background-color: var(--navbar-link-hover-bg);
+  }
+  

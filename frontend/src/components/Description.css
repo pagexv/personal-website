@@ -1,0 +1,47 @@
+.description {
+    font-size: 1.51em;
+    margin: 40px 0; /* Double the space to ensure it doesn't overlap with subtitle */
+    position: relative;
+    padding: 10px;
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  
+  .description.show-frame {
+    border: 1px solid white;
+    animation: frame 2s forwards;
+  }
+  
+  @keyframes frame {
+    0% {
+      border-top-width: 0;
+      border-right-width: 0;
+      border-bottom-width: 0;
+      border-left-width: 0;
+    }
+    25% {
+      border-top-width: 1px;
+      border-right-width: 0;
+      border-bottom-width: 0;
+      border-left-width: 0;
+    }
+    50% {
+      border-top-width: 1px;
+      border-right-width: 1px;
+      border-bottom-width: 0;
+      border-left-width: 0;
+    }
+    75% {
+      border-top-width: 1px;
+      border-right-width: 1px;
+      border-bottom-width: 1px;
+      border-left-width: 0;
+    }
+    100% {
+      border-top-width: 1px;
+      border-right-width: 1px;
+      border-bottom-width: 1px;
+      border-left-width: 1px;
+    }
+  }
+  

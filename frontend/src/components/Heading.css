@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'Hacked';
+  src: url('../animations/Hacked.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.heading {
+  font-size: 5em;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  font-family: 'Hacked', sans-serif;
+  color: white;
+  opacity: 0; /* Initial opacity to handle reveal */
+  transform: translateY(50px); /* Initial transform to handle reveal */
+}
+
+.heading.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s ease-in, transform 1s ease-in;
+}
+
+.glitch-letter {
+  display: inline-block;
+  position: relative;
+  color: white;
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+  }
+  20% {
+    text-shadow: -2px 0 red, 2px 0 blue;
+  }
+  40% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+  }
+  60% {
+    text-shadow: -2px 0 red, 2px 0 blue;
+  }
+  80% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+  }
+  100% {
+    text-shadow: -2px 0 red, 2px 0 blue;
+  }
+}
+
+.shadow-effect {
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
