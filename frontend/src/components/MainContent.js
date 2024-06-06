@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MainContent.css';
+import AnimationContainer from './AnimationContainer';  // Ensure this import path is correct
+import left from '../animations/contact.json';
+
 
 const MainContent = ({ leftAnimationRef }) => {
   const [formData, setFormData] = useState({
