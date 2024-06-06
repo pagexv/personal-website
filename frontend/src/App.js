@@ -6,6 +6,7 @@ import Contact from './components/Contact';
 import ProjectPage from './components/ProjectPage';
 import Navbar from './components/Navbar'; // Import Navbar
 import './App.css';
+import HealthCheck from './components/HealthCheck';  // Import HealthCheck component
 
 const App = () => {
   const location = useLocation();
@@ -33,6 +34,8 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<ProjectPage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/health" element={<HealthCheck />} />  {/* Add HealthCheck route */}
+   
       </Routes>
     </div>
   );
