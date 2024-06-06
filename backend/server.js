@@ -8,7 +8,7 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 5000;
 
-const RECAPTCHA_SECRET_KEY = 'your-secret-key';
+const RECAPTCHA_SECRET_KEY = '6Lejg_ApAAAAAInewNdt-aOeZ2ZGxEKzl3bmS7jA';
 
 app.use(cors());
 app.use(bodyParser.json());
