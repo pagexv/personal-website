@@ -1,6 +1,7 @@
-/* Gradient background */
+/* Home.css */
 .home {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -9,11 +10,50 @@
   text-align: center;
   font-family: 'Arial', sans-serif;
   position: relative; /* Make home relative to position animation */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.header-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  opacity: 0.1; /* Make video less visible */
+
 }
 
 .home-content {
-  max-width: 600px;
-  z-index: 1; /* Ensure content is above animation */
+  max-width: 1200px;
+  width: 100%;
+  z-index: 1; /* Ensure content is above video */
 }
 
+.home-main {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the animation */
+  position: relative;
+}
 
+@media (max-width: 768px) {
+  .home-main {
+    flex-direction: column;
+  }
+
+  .tech-stack-icons {
+    margin-bottom: 20px;
+  }
+}
+
+/* AnimationContainer.css */
+.animation-container {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto; /* Center the animation */
+  z-index: 0; /* Ensure animation is behind content */
+  pointer-events: none; /* Make sure animation does not block interactions */
+  transition: opacity 1s ease, transform 1s ease; /* Add transition for appearance */
+}

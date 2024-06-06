@@ -31,7 +31,7 @@ const Heading = forwardRef((props, ref) => {
     });
   }, [ref]);
 
-  return <h2 ref={ref} className="heading">Hello visitor</h2>;
+  return <h2 ref={ref} className="heading">Hello There</h2>;
 });
 
 export default Heading;

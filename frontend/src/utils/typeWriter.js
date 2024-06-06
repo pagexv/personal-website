@@ -1,4 +1,4 @@
-export const typeWriter = (element, text, delay = 100) => {
+export const typeWriter = (element, text, delay = 50) => {
     if (!element.dataset.typed) {
       element.dataset.typed = true;
       let i = 0;

@@ -1,8 +1,8 @@
 .subtitle {
-    font-size: 2em;
-    font-style: italic;
-    margin: 10px 0 40px 0; /* Double the space from subtitle to description */
-    display: inline-block;
-    opacity: 0;
-  }
-  
+  font-size: 2em;
+  font-style: italic;
+  margin: 10px 0 40px 0; /* Double the space from subtitle to description */
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
