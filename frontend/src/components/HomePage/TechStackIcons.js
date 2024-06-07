@@ -3,16 +3,16 @@ import React, { useEffect, useRef } from 'react';
 import './TechStackIcons.css';
 
 const icons = [
-    { name: 'Spring', src: require('../animations/spring.png') },
-    { name: 'MySQL', src: require('../animations/mysql.png') },
-    { name: 'Python', src: require('../animations/python.png') },
+    { name: 'Spring', src: require('../../animations/spring.png') },
+    { name: 'MySQL', src: require('../../animations/mysql.png') },
+    { name: 'Python', src: require('../../animations/python.png') },
 
 
-  { name: 'React', src: require('../animations/react.png') },
-  { name: 'Kubernetes', src: require('../animations/kubernetes.png') },
-  { name: 'Jenkins', src: require('../animations/Jenkins.png') },
-  { name: 'AWS', src: require('../animations/aws.png') },
-  { name: 'VS', src: require('../animations/visual-basic.png') },
+  { name: 'React', src: require('../../animations/react.png') },
+  { name: 'Kubernetes', src: require('../../animations/kubernetes.png') },
+  { name: 'Jenkins', src: require('../../animations/Jenkins.png') },
+  { name: 'AWS', src: require('../../animations/aws.png') },
+  { name: 'VS', src: require('../../animations/visual-basic.png') },
 ];
 
 const TechStackIcons = () => {

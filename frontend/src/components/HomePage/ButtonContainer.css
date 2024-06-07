@@ -1,0 +1,44 @@
+/* ButtonContainer.css */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+button {
+  padding: 0.5em 2em;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 30px; /* Make the buttons rounded */
+  cursor: pointer;
+  margin: 1em;
+  font-size: 1em;
+  text-transform: uppercase; /* Make the text uppercase */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  background-color: white;
+  color: #1e90ff; /* Change text color to match theme on hover */
+}
+
+
+@media (max-width: 768px) {
+  button {
+    width: 80%; /* Make button full-width on smaller screens */
+    margin-top: 20px; /* Add margin-top for spacing */
+    padding: 0.5em 2em;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 30px; /* Make the buttons rounded */
+    cursor: pointer;
+    margin: 2em;
+    font-size: 1em;
+    text-transform: uppercase; /* Make the text uppercase */
+    transition: background-color 0.3s, color 0.3s;
+  }
+}

@@ -2,16 +2,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
-import engineerAnimation from '../animations/engineerAnimation.json';
-import headerVideo from '../animations/header.mp4';
+import engineerAnimation from '../../animations/engineerAnimation.json';
+import headerVideo from '../../animations/header.mp4';
 import './Home.css';
-import { typeWriter } from '../utils/typeWriter';
-import { textTransition } from '../utils/textTransition';
-import Heading from './Heading';
+import { typeWriter } from '../../utils/typeWriter';
+import { textTransition } from '../../utils/textTransition';
+import Heading from '../Heading';
 import Subtitle from './Subtitle';
 import Description from './Description';
 import ButtonContainer from './ButtonContainer';
-import AnimationContainer from './AnimationContainer';
+import AnimationContainer from '../AnimationContainer';
 import TechStackIcons from './TechStackIcons';
 
 const Home = () => {
