@@ -101,7 +101,7 @@ const Home = () => {
         </>
       ) : (
         <div className="go-container" onClick={handleGoClick} ref={goRef}>
-          <Lottie animationData={goAnimation} loop={false} />
+          <Lottie animationData={goAnimation} loop={true} />
         </div>
       )}
     </div>
