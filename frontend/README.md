@@ -1,3 +1,9 @@
+
+
+## To deploy
+npm run build
+sudo cp -r build/* /var/www/html/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
