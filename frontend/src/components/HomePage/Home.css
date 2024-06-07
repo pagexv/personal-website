@@ -21,8 +21,12 @@
   width: 100%;
   height: 100vh;
   object-fit: cover;
-
   opacity: 0.1; /* Make video less visible */
+
+}
+
+.header-video.hidden {
+  display: none;
 }
 
 .video-overlay {
@@ -48,6 +52,17 @@
   align-items: center;
   justify-content: center; /* Center the animation */
   position: relative;
+}
+
+
+.go-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  cursor: pointer;
+  z-index: 1; /* Ensure go animation is on top initially */
 }
 
 @media (max-width: 768px) {

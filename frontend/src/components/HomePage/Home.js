@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import engineerAnimation from '../../animations/engineerAnimation.json';
+import goAnimation from '../../animations/go.json'; // Import the go animation
 import headerVideo from '../../animations/header.mp4';
 import './Home.css';
 import { typeWriter } from '../../utils/typeWriter';
@@ -21,65 +22,88 @@ const Home = () => {
   const descriptionRef = useRef(null);
   const buttonRef = useRef(null);
   const animationRef = useRef(null);
+  const goRef = useRef(null); // Define goRef
 
   const [darkMode, setDarkMode] = useState(false);
+  const [showEngineerAnimation, setShowEngineerAnimation] = useState(false);
 
   useEffect(() => {
-    const heading = headingRef.current;
-    const subtitle = subtitleRef.current;
-    const description = descriptionRef.current;
-    const button = buttonRef.current;
-    const animation = animationRef.current;
+    if (showEngineerAnimation) {
+      const heading = headingRef.current;
+      const subtitle = subtitleRef.current;
+      const description = descriptionRef.current;
+      const button = buttonRef.current;
+      const animation = animationRef.current;
 
-    setTimeout(() => {
-      heading.classList.add('revealed');
-    }, 400);
+      setTimeout(() => {
+        if (heading) heading.classList.add('revealed');
+      }, 400);
 
-    setTimeout(() => {
-      animation.style.opacity = 1;
-      animation.style.transform = 'translateY(0)';
-    }, 500);
+      setTimeout(() => {
+        if (animation) {
+          animation.style.opacity = 1;
+          animation.style.transform = 'translateY(0)';
+        }
+      }, 500);
 
-    setTimeout(() => {
-      typeWriter(subtitle, 'I AM A FULL-STACK ENGINEER');
-      subtitle.style.opacity = 1;
-    }, 600);
+      setTimeout(() => {
+        if (subtitle) {
+          typeWriter(subtitle, 'I AM A FULL-STACK ENGINEER');
+          subtitle.style.opacity = 1;
+        }
+      }, 600);
 
-    setTimeout(() => {
-      textTransition(description, 'Specializing in building everything from small business sites to rich interactive web applications.');
-      description.style.opacity = 1;
-      description.style.transform = 'translateY(0)';
-      description.classList.add('show-frame');
-    }, 700);
+      setTimeout(() => {
+        if (description) {
+          textTransition(description, 'Specializing in building everything from small business sites to rich interactive web applications.');
+          description.style.opacity = 1;
+          description.style.transform = 'translateY(0)';
+          description.classList.add('show-frame');
+        }
+      }, 700);
 
-    setTimeout(() => {
-      button.style.opacity = 1;
-      button.style.transform = 'translateY(0)';
-    }, 6000);
-  }, []);
+      setTimeout(() => {
+        if (button) {
+          button.style.opacity = 1;
+          button.style.transform = 'translateY(0)';
+        }
+      }, 6000);
+    }
+  }, [showEngineerAnimation]);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle('dark-mode', !darkMode);
   };
 
+  const handleGoClick = () => {
+    setShowEngineerAnimation(true);
+  };
+
   return (
     <div className="home">
-      <video className="header-video" autoPlay loop muted>
-        <source src={headerVideo} type="video/mp4" />
-        
-        Your browser does not support the video tag.
-      </video>
-      <div className="home-content">
-        <Heading ref={headingRef} />
-        <div className="home-main">
-          <TechStackIcons />
-          <AnimationContainer ref={animationRef} animationData={engineerAnimation} />
+      {showEngineerAnimation ? (
+        <>
+          <video className="header-video" autoPlay loop muted>
+            <source src={headerVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="home-content">
+            <Heading ref={headingRef} />
+            <div className="home-main">
+              <TechStackIcons />
+              <AnimationContainer ref={animationRef} animationData={engineerAnimation} />
+            </div>
+            <Subtitle ref={subtitleRef} />
+            <Description ref={descriptionRef} />
+            <ButtonContainer ref={buttonRef} navigate={navigate} toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+          </div>
+        </>
+      ) : (
+        <div className="go-container" onClick={handleGoClick} ref={goRef}>
+          <Lottie animationData={goAnimation} loop={false} />
         </div>
-        <Subtitle ref={subtitleRef} />
-        <Description ref={descriptionRef} />
-        <ButtonContainer ref={buttonRef} navigate={navigate} toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-      </div>
+      )}
     </div>
   );
 };
