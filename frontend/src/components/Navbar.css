@@ -18,7 +18,7 @@
 .navbar-brand {
   font-size: 1.5em;
   font-weight: bold;
-  background-image: url('../animations/menu.jpg'); /* Add background image for brand */
+ 
   background-size: cover; /* Ensure the background image covers the entire brand */
   background-position: center; /* Center the background image */
   padding: 10px; /* Add padding to make space for the background image */
