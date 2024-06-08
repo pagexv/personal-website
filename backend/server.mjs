@@ -1,23 +1,19 @@
-const express = require('express');
-const nodemailer = require('nodemailer');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const fetch = require('node-fetch');
-const path = require('path');
-require('dotenv').config();
+import express from 'express';
+import nodemailer from 'nodemailer';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import fetch from 'node-fetch';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
-const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
-
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -35,7 +31,14 @@ app.post('/send', async (req, res) => {
     return res.status(400).send('reCAPTCHA verification failed');
   }
 
-
+  // Set up nodemailer transporter
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  });
 
   const mailOptions = {
     from: email,
@@ -52,6 +55,9 @@ app.post('/send', async (req, res) => {
     res.status(500).send('Error sending email');
   }
 });
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
