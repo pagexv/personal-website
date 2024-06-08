@@ -1,0 +1,102 @@
+.canvas-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  
+  .background-video.overlay {
+    opacity: 0.5; /* Adjust the opacity to make the second video less transparent */
+    z-index: 1; /* Ensure this is on top of the first video */
+  }
+  
+  .hovered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid cyan;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    color: white;
+    width: 50%;
+    max-height: 60%;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  
+  .hovered-text strong {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .hovered-text ul {
+    padding-left: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .hovered-text li {
+    margin-bottom: 5px;
+  }
+  
+  .expand {
+    animation: expand 1s forwards;
+  }
+  
+  @keyframes expand {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  
+  .node-name {
+    color: white;
+    font-size: 1em;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2px 5px;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .hovered-text {
+      width: 80%;
+      padding: 15px;
+      font-size: 0.9em;
+    }
+  
+    .node-name {
+      font-size: 0.8em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hovered-text {
+      width: 90%;
+      padding: 10px;
+      font-size: 0.8em;
+    }
+  
+    .node-name {
+      font-size: 0.7em;
+    }
+  }
+  

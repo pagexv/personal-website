@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
+    "@react-spring/three": "^9.7.3",
+    "@react-three/drei": "^9.106.0",
+    "@react-three/fiber": "^8.16.8",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -16,6 +19,7 @@
     "react-scripts": "^5.0.1",
     "react-tsparticles": "^2.12.2",
     "swiper": "^11.1.4",
+    "three": "^0.165.0",
     "tsparticles": "^3.4.0",
     "web-vitals": "^2.1.4"
   },

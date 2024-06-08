@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import Home from './components/HomePage/Home';
+import NodeMap from './components/AboutMe/NodeMap';
 import About from './components/About';
 import Contact from './components/Contact';
 import ProjectPage from './components/ProjectPage';
@@ -31,7 +32,7 @@ const App = () => {
       <Navbar /> {/* Add the Navbar component */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<NodeMap />} />
         <Route path="/projects" element={<ProjectPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/health" element={<HealthCheck />} />  {/* Add HealthCheck route */}
