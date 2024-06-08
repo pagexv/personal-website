@@ -4,14 +4,20 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
 const path = require('path');
+require('dotenv').config();
+
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 
 const app = express();
 const port = process.env.PORT || 5000;
-
-const app = express();
-const port = process.env.PORT || 5000;
-
-const RECAPTCHA_SECRET_KEY = '6Lejg_ApAAAAAInewNdt-aOeZ2ZGxEKzl3bmS7jA';
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -29,14 +35,7 @@ app.post('/send', async (req, res) => {
     return res.status(400).send('reCAPTCHA verification failed');
   }
 
-  // Set up nodemailer transporter
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'colinqu2273@gmail.com', // Replace with your email
-      pass: 'guqj bxcz kbvl zpiv'   // Replace with your email password
-    }
-  });
+
 
   const mailOptions = {
     from: email,
