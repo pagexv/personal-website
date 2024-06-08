@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Canvas, useFrame, extend, useLoader } from '@react-three/fiber';
+import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import { a, useSpring } from '@react-spring/three';
 import * as THREE from 'three';
@@ -100,6 +100,14 @@ const NodeMap = () => {
             setDisplayText={setDisplayText}
           />
         ))}
+        {/* {hoveredNode && (
+          <ParticleEffect 
+            startPosition={hoveredNode.position} 
+            endPosition={[hoveredNode.position[0], hoveredNode.position[1] + 2, hoveredNode.position[2]]}
+            setDisplayText={setDisplayText}
+            textBoxDimensions={{ width: 4, height: 2 }} // Example dimensions
+          />
+        )} */}
       </Canvas>
       {displayText && hoveredNode && (
         <div className="hovered-text expand" dangerouslySetInnerHTML={{ __html: hoveredNode.text }} />
@@ -149,6 +157,13 @@ const AnimatedNode = ({ node, setHoveredNode, setStoppedNodeId, stopped, setDisp
     setIsHovered(false);
   };
 
+  const handleTouchStart = () => {
+    setHoveredNode(node);
+    setIsHovered(true);
+    setStoppedNodeId(node.id);
+    setDisplayText(true);  // Ensure this is called to start displaying the background image
+  };
+
   return (
     <group>
       <a.mesh
@@ -157,6 +172,7 @@ const AnimatedNode = ({ node, setHoveredNode, setStoppedNodeId, stopped, setDisp
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
         onClick={handlePointerOver}
+        onTouchStart={handleTouchStart}  // Add touch event handler
         scale={scale}
       >
         <sphereGeometry args={[0.1, 16, 16]} />
@@ -170,6 +186,7 @@ const AnimatedNode = ({ node, setHoveredNode, setStoppedNodeId, stopped, setDisp
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
         onClick={handlePointerOver}
+        onTouchStart={handleTouchStart}  // Add touch event handler
       >
         <sphereGeometry args={[0.3, 16, 16]} /> {/* Adjust the first argument to control the size */}
         <meshBasicMaterial transparent opacity={0} />
