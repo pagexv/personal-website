@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './MainContent.css';
 import AnimationContainer from './AnimationContainer';  // Ensure this import path is correct
 import left from '../animations/contact.json';
-
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const MainContent = ({ leftAnimationRef }) => {
   const [formData, setFormData] = useState({
@@ -22,6 +22,11 @@ const MainContent = ({ leftAnimationRef }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!recaptchaToken) {
+      alert('reCAPTCHA verification failed');
+      return;
+    }
+
     try {
       const response = await fetch('https://hanfei.pro/api/send', {
         method: 'POST',
@@ -50,13 +55,22 @@ const MainContent = ({ leftAnimationRef }) => {
   useEffect(() => {
     const loadRecaptcha = () => {
       const script = document.createElement('script');
-      script.src = 'https://www.google.com/recaptcha/api.js?render=6LfOZPQpAAAAABepbR8sr8M5wbLsBRW2OsMrEOdB';
+      script.src = 'https://www.google.com/recaptcha/api.js?render=6LfOZPQpAAAAABepbR8sr8M5wbLsBRW2OsMrEOdB';  // Replace with your site key
       script.async = true;
       script.defer = true;
       document.body.appendChild(script);
       script.onload = () => {
+        console.log('reCAPTCHA script loaded');
         window.grecaptcha.ready(() => {
-          window.grecaptcha.execute('6LfOZPQpAAAAABepbR8sr8M5wbLsBRW2OsMrEOdB', { action: 'submit' }).then(setRecaptchaToken);
+          console.log('reCAPTCHA ready');
+          window.grecaptcha.execute('6LfOZPQpAAAAABepbR8sr8M5wbLsBRW2OsMrEOdB', { action: 'submit' })  // Replace with your site key
+            .then((token) => {
+              setRecaptchaToken(token);
+              console.log('reCAPTCHA token:', token);  // Debugging: Log the reCAPTCHA token
+            })
+            .catch((error) => {
+              console.error('Error executing reCAPTCHA:', error);
+            });
         });
       };
     };
