@@ -55,7 +55,7 @@ const MainContent = ({ leftAnimationRef }) => {
   useEffect(() => {
     const loadRecaptcha = () => {
       const script = document.createElement('script');
-      script.src = 'https://www.google.com/recaptcha/api.js?render=6LfOZPQpAAAAABepbR8sr8M5wbLsBRW2OsMrEOdB';  // Replace with your site key
+      script.src = 'https://www.google.com/recaptcha/api.js?render=6Le6Z_QpAAAAAAaR60nnsmP3HL3Seu3-CewEdgXq';  // Replace with your site key
       script.async = true;
       script.defer = true;
       document.body.appendChild(script);
@@ -63,7 +63,7 @@ const MainContent = ({ leftAnimationRef }) => {
         console.log('reCAPTCHA script loaded');
         window.grecaptcha.ready(() => {
           console.log('reCAPTCHA ready');
-          window.grecaptcha.execute('6LfOZPQpAAAAABepbR8sr8M5wbLsBRW2OsMrEOdB', { action: 'submit' })  // Replace with your site key
+          window.grecaptcha.execute('6Le6Z_QpAAAAAAaR60nnsmP3HL3Seu3-CewEdgXq', { action: 'submit' })  // Replace with your site key
             .then((token) => {
               setRecaptchaToken(token);
               console.log('reCAPTCHA token:', token);  // Debugging: Log the reCAPTCHA token

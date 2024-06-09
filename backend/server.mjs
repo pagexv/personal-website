@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
+const RECAPTCHA_SECRET_KEY = '6Le6Z_QpAAAAAOYdPyWiZHKWCxUFbDoEJ6bd3u5h';
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -40,8 +40,8 @@ app.post('/api/send', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+      user: 'colinqu2273@gmail.com',
+      pass: 'guqj bxcz kbvl zpiv'
     }
   });
 
