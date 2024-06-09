@@ -50,13 +50,13 @@ const MainContent = ({ leftAnimationRef }) => {
   useEffect(() => {
     const loadRecaptcha = () => {
       const script = document.createElement('script');
-      script.src = 'https://www.google.com/recaptcha/api.js?render=6Lejg_ApAAAAAInewNdt-aOeZ2ZGxEKzl3bmS7jA';
+      script.src = 'https://www.google.com/recaptcha/api.js?render=6LfOZPQpAAAAABepbR8sr8M5wbLsBRW2OsMrEOdB';
       script.async = true;
       script.defer = true;
       document.body.appendChild(script);
       script.onload = () => {
         window.grecaptcha.ready(() => {
-          window.grecaptcha.execute('6Lejg_ApAAAAAInewNdt-aOeZ2ZGxEKzl3bmS7jA', { action: 'submit' }).then(setRecaptchaToken);
+          window.grecaptcha.execute('6LfOZPQpAAAAABepbR8sr8M5wbLsBRW2OsMrEOdB', { action: 'submit' }).then(setRecaptchaToken);
         });
       };
     };
