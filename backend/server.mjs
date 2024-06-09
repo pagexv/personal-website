@@ -18,6 +18,11 @@ const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
 app.use(cors());
 app.use(bodyParser.json());
 
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
+
 app.post('/send', async (req, res) => {
   const { firstName, lastName, email, message, recaptchaToken } = req.body;
 
