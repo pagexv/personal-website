@@ -18,7 +18,7 @@ const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/health', (req, res) => {
+app.get('/healthCheck', (req, res) => {
   res.status(200).send('OK');
 });
 
