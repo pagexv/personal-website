@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import AnimationContainer from './AnimationContainer';
 import MainContent from './MainContent';
 import './Contact.css';
-import astronautAnimation from '../animations/astronaut.json';
-import left from '../animations/contact.json';
 
 const Contact = () => {
   const animationRef = useRef(null);

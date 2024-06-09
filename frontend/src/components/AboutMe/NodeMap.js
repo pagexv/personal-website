@@ -11,6 +11,10 @@ import ParticleEffect from './ParticleEffect';
 // Extend TextGeometry to be used in JSX
 extend({ TextGeometry });
 
+const isMobile = () => {
+  return /Mobi|Android/i.test(navigator.userAgent);
+};
+
 const nodes = [
   {
     id: 1,
@@ -84,7 +88,7 @@ const NodeMap = () => {
         Your browser does not support the video tag.
       </video>
       <video autoPlay loop muted className="background-video overlay">
-        <source src="/second-about.mp4" type="video/mp4" />
+        <source src="/second-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <Canvas style={{ background: 'transparent', position: 'relative', zIndex: 1 }}>
@@ -98,6 +102,7 @@ const NodeMap = () => {
             setStoppedNodeId={setStoppedNodeId}
             stopped={stoppedNodeId === node.id}
             setDisplayText={setDisplayText}
+            isMobile={isMobile()}
           />
         ))}
         {/* {hoveredNode && (
@@ -116,7 +121,7 @@ const NodeMap = () => {
   );
 };
 
-const AnimatedNode = ({ node, setHoveredNode, setStoppedNodeId, stopped, setDisplayText }) => {
+const AnimatedNode = ({ node, setHoveredNode, setStoppedNodeId, stopped, setDisplayText, isMobile }) => {
   const nodeRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
 
@@ -169,10 +174,10 @@ const AnimatedNode = ({ node, setHoveredNode, setStoppedNodeId, stopped, setDisp
       <a.mesh
         ref={nodeRef}
         position={position}
-        onPointerOver={handlePointerOver}
-        onPointerOut={handlePointerOut}
-        onClick={handlePointerOver}
-        onTouchStart={handleTouchStart}  // Add touch event handler
+        onPointerOver={!isMobile ? handlePointerOver : null}
+        onPointerOut={!isMobile ? handlePointerOut : null}
+        onClick={!isMobile ? handlePointerOver : null}
+        onTouchStart={isMobile ? handleTouchStart : null}  // Add touch event handler
         scale={scale}
       >
         <sphereGeometry args={[0.1, 16, 16]} />
@@ -183,10 +188,10 @@ const AnimatedNode = ({ node, setHoveredNode, setStoppedNodeId, stopped, setDisp
       </a.mesh>
       <mesh
         position={position}
-        onPointerOver={handlePointerOver}
-        onPointerOut={handlePointerOut}
-        onClick={handlePointerOver}
-        onTouchStart={handleTouchStart}  // Add touch event handler
+        onPointerOver={!isMobile ? handlePointerOver : null}
+        onPointerOut={!isMobile ? handlePointerOut : null}
+        onClick={!isMobile ? handlePointerOver : null}
+        onTouchStart={isMobile ? handleTouchStart : null}  // Add touch event handler
       >
         <sphereGeometry args={[0.3, 16, 16]} /> {/* Adjust the first argument to control the size */}
         <meshBasicMaterial transparent opacity={0} />

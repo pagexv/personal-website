@@ -35,3 +35,8 @@
     background-color: #104e8b;
   }
   
+
+
+  animation-container .left-animation {
+    margin-right: 15px; /* Ensure this aligns correctly */
+  }

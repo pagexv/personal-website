@@ -23,7 +23,7 @@ const MainContent = ({ leftAnimationRef }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!recaptchaToken) {
-      alert('reCAPTCHA verification failed');
+   //   alert('reCAPTCHA verification failed');
       return;
     }
 
@@ -60,16 +60,16 @@ const MainContent = ({ leftAnimationRef }) => {
       script.defer = true;
       document.body.appendChild(script);
       script.onload = () => {
-        console.log('reCAPTCHA script loaded');
+    //    console.log('reCAPTCHA script loaded');
         window.grecaptcha.ready(() => {
-          console.log('reCAPTCHA ready');
+        //  console.log('reCAPTCHA ready');
           window.grecaptcha.execute('6Le6Z_QpAAAAAAaR60nnsmP3HL3Seu3-CewEdgXq', { action: 'submit' })  // Replace with your site key
             .then((token) => {
               setRecaptchaToken(token);
-              console.log('reCAPTCHA token:', token);  // Debugging: Log the reCAPTCHA token
+          //    console.log('reCAPTCHA token:', token);  // Debugging: Log the reCAPTCHA token
             })
             .catch((error) => {
-              console.error('Error executing reCAPTCHA:', error);
+            //  console.error('Error executing reCAPTCHA:', error);
             });
         });
       };
@@ -81,7 +81,7 @@ const MainContent = ({ leftAnimationRef }) => {
     <div className="main-content">
       <div className="contact-info">
         <h2>Contact us</h2>
-        <p>Need to get in touch with us? Either fill out the form with your inquiry or find the department email you'd like to contact below.</p>
+        <p>Need to get in touch with me? Either fill out the form with your inquiry or find the department email you'd like to contact below.</p>
         <div className="social-icons">
           <AnimationContainer animationData={left} ref={leftAnimationRef} className="left-animation" />
           <a href="https://github.com/pagexv" target="_blank" rel="noopener noreferrer">
@@ -111,7 +111,7 @@ const MainContent = ({ leftAnimationRef }) => {
           </div>
           <div className="form-group">
             <textarea id="message" name="message" value={formData.message} onChange={handleChange} required></textarea>
-            <label htmlFor="message">What can we help you with?</label>
+            <label htmlFor="message">What can I help you with?</label>
           </div>
           <button type="submit">Submit</button>
         </form>
