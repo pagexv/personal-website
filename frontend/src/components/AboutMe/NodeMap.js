@@ -84,11 +84,11 @@ const NodeMap = () => {
   return (
     <div className="canvas-container" onClick={handleCanvasClick}>
       <video autoPlay loop muted className="background-video">
-        <source src="/about.mp4" type="video/mp4" />
+        <source src="https://backend-resources-hq.s3.us-east-2.amazonaws.com/about.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <video autoPlay loop muted className="background-video overlay">
-        <source src="/second-video.mp4" type="video/mp4" />
+        <source src="https://backend-resources-hq.s3.us-east-2.amazonaws.com/second-about.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <Canvas style={{ background: 'transparent', position: 'relative', zIndex: 1 }}>

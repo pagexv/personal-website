@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import engineerAnimation from '../../animations/engineerAnimation.json';
 import goAnimation from '../../animations/go.json'; // Import the go animation
-import headerVideo from '../../animations/header.mp4';
+
 import './Home.css';
 import { typeWriter } from '../../utils/typeWriter';
 import { textTransition } from '../../utils/textTransition';
@@ -85,7 +85,7 @@ const Home = () => {
       {showEngineerAnimation ? (
         <>
           <video className="header-video" autoPlay loop muted>
-            <source src={headerVideo} type="video/mp4" />
+            <source src="https://backend-resources-hq.s3.us-east-2.amazonaws.com/header.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <div className="home-content">
