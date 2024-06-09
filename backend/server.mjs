@@ -23,7 +23,7 @@ app.get('/health.html', (req, res) => {
 });
 
 
-app.post('/send', async (req, res) => {
+app.post('/api/send', async (req, res) => {
   const { firstName, lastName, email, message, recaptchaToken } = req.body;
 
   // Verify reCAPTCHA token

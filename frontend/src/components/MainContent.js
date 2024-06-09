@@ -23,7 +23,7 @@ const MainContent = ({ leftAnimationRef }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://18.116.28.67:5000/send', {
+      const response = await fetch('https://My-Personal-Web-311057380.us-east-2.elb.amazonaws.com/api/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
