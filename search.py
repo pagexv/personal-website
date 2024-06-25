@@ -7,13 +7,13 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import schedule
+from urllib.parse import urlparse
 from playwright.async_api import async_playwright
 from bs4 import BeautifulSoup
 import cloudscraper
 
 SESSION_FILE = 'playwright_session.json'
 SEARCH_HISTORY_FILE = 'search_history.json'
-EMAIL_INTERVAL = 3 * 3600  # 3 hours in seconds
 EMAIL_SENDER = 'colinqu2273@gmail.com'
 EMAIL_RECEIVER = 'colinqu2273@gmail.com'
 EMAIL_PASSWORD = 'guqj bxcz kbvl zpiv'
@@ -67,13 +67,8 @@ def fetch_cloudscraper_content(url):
 
 def parse_indeed_jobs(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
-    print("Indeed HTML Content Fetched:")
-    print(html_content[:1000])  # Print the first 1000 characters of the HTML content for debugging
-
     jobs = []
-    job_cards = soup.find_all('td', class_='resultContent')  # Locate the job cards using the correct class
-    print(f"Found {len(job_cards)} Indeed job cards.")  # Debugging: Print the number of job cards found
-
+    job_cards = soup.find_all('td', class_='resultContent')
     for job_elem in job_cards:
         title_elem = job_elem.find('h2', class_='jobTitle')
         company_elem = job_elem.find('span', {'data-testid': 'company-name'})
@@ -81,7 +76,6 @@ def parse_indeed_jobs(html_content):
         link_elem = title_elem.find('a', class_='jcs-JobTitle')['href'] if title_elem.find('a', class_='jcs-JobTitle') else None
         
         if None in (title_elem, company_elem, location_elem, link_elem):
-            print("Skipping a job element due to missing information.")  # Debugging: Print when skipping elements
             continue
         
         job = {
@@ -91,19 +85,12 @@ def parse_indeed_jobs(html_content):
             'link': 'https://www.indeed.com' + link_elem
         }
         jobs.append(job)
-    
-    print(f"Parsed {len(jobs)} Indeed jobs.")  # Debugging: Print the number of jobs parsed
     return jobs
 
 def parse_linkedin_jobs(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
-    print("LinkedIn HTML Content Fetched:")
-    print(html_content[:1000])  # Print the first 1000 characters of the HTML content for debugging
-
     jobs = []
-    job_cards = soup.find_all('div', class_='job-card-list__entity-lockup')  # Locate the job cards using the correct class
-    print(f"Found {len(job_cards)} LinkedIn job cards.")  # Debugging: Print the number of job cards found
-
+    job_cards = soup.find_all('div', class_='job-card-list__entity-lockup')
     for job_elem in job_cards:
         title_elem = job_elem.find('a', class_='job-card-container__link')
         company_elem = job_elem.find('span', class_='job-card-container__primary-description')
@@ -111,7 +98,6 @@ def parse_linkedin_jobs(html_content):
         link_elem = title_elem['href'] if title_elem else None
         
         if None in (title_elem, company_elem, location_elem, link_elem):
-            print("Skipping a job element due to missing information.")  # Debugging: Print when skipping elements
             continue
         
         job = {
@@ -121,8 +107,6 @@ def parse_linkedin_jobs(html_content):
             'link': 'https://www.linkedin.com' + link_elem
         }
         jobs.append(job)
-    
-    print(f"Parsed {len(jobs)} LinkedIn jobs.")  # Debugging: Print the number of jobs parsed
     return jobs
 
 def load_search_history():
@@ -153,7 +137,11 @@ def send_email(subject, body):
         print(f'Error sending email: {e}')
 
 def find_new_jobs(current_jobs, history):
-    new_jobs = [job for job in current_jobs if job not in history]
+    def get_base_url(job):
+        return urlparse(job['link']).path
+
+    history_set = set(get_base_url(job) for job in history)
+    new_jobs = [job for job in current_jobs if get_base_url(job) not in history_set]
     return new_jobs
 
 async def job_search():
@@ -180,7 +168,7 @@ async def job_search():
             for job in new_jobs:
                 body += f"Title: {job['title']}\nCompany: {job['company']}\nLocation: {job['location']}\nLink: {job['link']}\n\n"
             send_email('New Job Listings Found', body)
-            save_search_history(all_jobs)
+            save_search_history(search_history + new_jobs)
     except Exception as e:
         send_email('Job Search Failed', f'An error occurred during the job search:\n\n{str(e)}')
 
@@ -193,8 +181,9 @@ def main():
     # Run job search immediately
     asyncio.run(job_search())
     
-    # Schedule the job search every 3 hours
-    schedule.every(3).hours.do(lambda: asyncio.run(job_search()))
+    # Schedule the job search every hour and at 10 minutes past each hour
+    schedule.every().hour.at(":00").do(lambda: asyncio.run(job_search()))
+    schedule.every().hour.at(":30").do(lambda: asyncio.run(job_search()))
     # Schedule the history clearing every week
     schedule.every().week.do(clear_history)
 
