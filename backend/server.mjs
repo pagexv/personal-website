@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-const RECAPTCHA_SECRET_KEY = '6Le6Z_QpAAAAAOYdPyWiZHKWCxUFbDoEJ6bd3u5h';
+
 
 app.use(cors());
 app.use(bodyParser.json());
