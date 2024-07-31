@@ -63,7 +63,7 @@ const MainContent = ({ leftAnimationRef }) => {
     //    console.log('reCAPTCHA script loaded');
         window.grecaptcha.ready(() => {
         //  console.log('reCAPTCHA ready');
-          window.grecaptcha.execute('6Le6Z_QpAAAAAAaR60nnsmP3HL3Seu3-CewEdgXq', { action: 'submit' })  // Replace with your site key
+
             .then((token) => {
               setRecaptchaToken(token);
           //    console.log('reCAPTCHA token:', token);  // Debugging: Log the reCAPTCHA token
