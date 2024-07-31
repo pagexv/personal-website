@@ -55,7 +55,6 @@ const MainContent = ({ leftAnimationRef }) => {
   useEffect(() => {
     const loadRecaptcha = () => {
       const script = document.createElement('script');
-      script.src = 'https://www.google.com/recaptcha/api.js?render=6Le6Z_QpAAAAAAaR60nnsmP3HL3Seu3-CewEdgXq';  // Replace with your site key
       script.async = true;
       script.defer = true;
       document.body.appendChild(script);
